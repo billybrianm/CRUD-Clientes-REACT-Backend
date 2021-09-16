@@ -1,8 +1,13 @@
 package com.billybrian.DesafioCoopersystem.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -21,10 +26,35 @@ public class Usuario {
 	private String complemento;
 	private boolean isAdmin;
 	
+	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+	private List<UsuariosTelefones> telefones = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "id", fetch = FetchType.EAGER)
+	private List<UsuariosEmails> emails = new ArrayList<>();
+	
+	
 
-	@SuppressWarnings("unused")
-	private Usuario() {}
+	public Usuario(Long id) { this.id = id;}
+	
+	public Usuario() { super(); }
 
+	public Usuario(String usuario, String senha, String nome, String cpf, String cep, String logradouro, String bairro, String cidade, String uf, String complemento, boolean isAdmin, List<UsuariosTelefones> telefones, List<UsuariosEmails> emails) {
+		
+		this.usuario = usuario;
+		this.senha = senha;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.cep = cep;
+		this.logradouro = logradouro;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.uf = uf;
+		this.complemento = complemento;
+		this.isAdmin = isAdmin;
+		this.telefones = telefones;
+		this.emails = emails;
+	}
+	
 	public Usuario(String usuario, String senha, String nome, String cpf, String cep, String logradouro, String bairro, String cidade, String uf, String complemento, boolean isAdmin) {
 		
 		this.usuario = usuario;
@@ -137,6 +167,22 @@ public class Usuario {
 		this.isAdmin = isAdmin;
 	}
 
+	public List<UsuariosTelefones> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(List<UsuariosTelefones> telefones) {
+		this.telefones = telefones;
+	}
+
+	public List<UsuariosEmails> getEmails() {
+		return emails;
+	}
+
+	public void setEmails(List<UsuariosEmails> emails) {
+		this.emails = emails;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -146,11 +192,13 @@ public class Usuario {
 		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
 		result = prime * result + ((complemento == null) ? 0 : complemento.hashCode());
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+		result = prime * result + ((emails == null) ? 0 : emails.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + (isAdmin ? 1231 : 1237);
 		result = prime * result + ((logradouro == null) ? 0 : logradouro.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
+		result = prime * result + ((telefones == null) ? 0 : telefones.hashCode());
 		result = prime * result + ((uf == null) ? 0 : uf.hashCode());
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
@@ -190,6 +238,11 @@ public class Usuario {
 				return false;
 		} else if (!cpf.equals(other.cpf))
 			return false;
+		if (emails == null) {
+			if (other.emails != null)
+				return false;
+		} else if (!emails.equals(other.emails))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -212,6 +265,11 @@ public class Usuario {
 				return false;
 		} else if (!senha.equals(other.senha))
 			return false;
+		if (telefones == null) {
+			if (other.telefones != null)
+				return false;
+		} else if (!telefones.equals(other.telefones))
+			return false;
 		if (uf == null) {
 			if (other.uf != null)
 				return false;
@@ -229,8 +287,12 @@ public class Usuario {
 	public String toString() {
 		return "Usuario [id=" + id + ", usuario=" + usuario + ", senha=" + senha + ", nome=" + nome + ", cpf=" + cpf
 				+ ", cep=" + cep + ", logradouro=" + logradouro + ", bairro=" + bairro + ", cidade=" + cidade + ", uf="
-				+ uf + ", complemento=" + complemento + ", isAdmin=" + isAdmin + "]";
+				+ uf + ", complemento=" + complemento + ", isAdmin=" + isAdmin + ", telefones=" + telefones
+				+ ", emails=" + emails + "]";
 	}
+
+	
+	
 
 	
 

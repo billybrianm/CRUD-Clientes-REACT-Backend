@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.billybrian.DesafioCoopersystem.dto.TokenDTO;
+import com.billybrian.DesafioCoopersystem.dto.UsuarioDTO;
 import com.billybrian.DesafioCoopersystem.dto.UsuarioLoginDTO;
 import com.billybrian.DesafioCoopersystem.entities.Usuario;
 import com.billybrian.DesafioCoopersystem.repositories.UsuarioRepository;
@@ -23,13 +24,21 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/usuarios")
-	  List<Usuario> getAll() {
-		List<Usuario> ret = new ArrayList<>();
-		repository.findAll().forEach(ret::add);
-	    return ret;
+	  List<UsuarioDTO> getAll() {
+		
+		List<UsuarioDTO> dtos = new ArrayList<>();
+		
+		List<Usuario> usuarios = (List<Usuario>) repository.findAll();
+		
+		for(Usuario u : usuarios) {
+			UsuarioDTO d = new UsuarioDTO(u);
+			dtos.add(d);
+		}
+		
+	    return dtos;
 	}
 	
-	@PostMapping("/usuarios")
+	@PostMapping("/usuario")
 	  Usuario novoUsuario(@RequestBody Usuario novoUsuario) {
 	    return repository.save(novoUsuario);
 	}
@@ -39,7 +48,7 @@ public class UsuarioController {
 		
 		TokenDTO t = new TokenDTO();
 		
-		t.setToken("test123");
+		t.setToken("admin");
 		return t;
 	}
 	
