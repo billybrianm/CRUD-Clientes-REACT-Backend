@@ -21,14 +21,14 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/usuarios")
-	  List<Usuario> all() {
+	  List<Usuario> getAll() {
 		List<Usuario> ret = new ArrayList<>();
 		repository.findAll().forEach(ret::add);
 	    return ret;
 	}
 	
-	@PostMapping("/employees")
-	  Usuario newEmployee(@RequestBody Usuario novoUsuario) {
+	@PostMapping("/usuarios")
+	  Usuario novoUsuario(@RequestBody Usuario novoUsuario) {
 	    return repository.save(novoUsuario);
 	}
 	
