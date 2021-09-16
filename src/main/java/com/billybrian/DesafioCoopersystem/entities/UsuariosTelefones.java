@@ -1,6 +1,7 @@
 package com.billybrian.DesafioCoopersystem.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -12,8 +13,10 @@ public class UsuariosTelefones {
 	
 	private @Id @GeneratedValue Long id;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Usuario usuario;
+	
+	
 	private String numero;
 	private TiposTelefone tipo;
 	
@@ -63,7 +66,6 @@ public class UsuariosTelefones {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
 		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
-		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
 
@@ -98,7 +100,7 @@ public class UsuariosTelefones {
 
 	@Override
 	public String toString() {
-		return "UsuariosTelefones [id=" + id + ", usuario=" + usuario + ", numero=" + numero + ", tipo=" + tipo + "]";
+		return "UsuariosTelefones [id=" + id +" numero=" + numero + ", tipo=" + tipo + "]";
 	}
 	
 	
