@@ -19,12 +19,13 @@ public class Usuario {
 	private String cidade;
 	private String uf;
 	private String complemento;
+	private boolean isAdmin;
 	
 
 	@SuppressWarnings("unused")
 	private Usuario() {}
 
-	public Usuario(String usuario, String senha, String nome, String cpf, String cep, String logradouro, String bairro, String cidade, String uf, String complemento) {
+	public Usuario(String usuario, String senha, String nome, String cpf, String cep, String logradouro, String bairro, String cidade, String uf, String complemento, boolean isAdmin) {
 		
 		this.usuario = usuario;
 		this.senha = senha;
@@ -36,6 +37,7 @@ public class Usuario {
 		this.cidade = cidade;
 		this.uf = uf;
 		this.complemento = complemento;
+		this.isAdmin = isAdmin;
 	}
 
 	public Long getId() {
@@ -125,6 +127,15 @@ public class Usuario {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
+	
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 
 	@Override
 	public int hashCode() {
@@ -136,6 +147,7 @@ public class Usuario {
 		result = prime * result + ((complemento == null) ? 0 : complemento.hashCode());
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + (isAdmin ? 1231 : 1237);
 		result = prime * result + ((logradouro == null) ? 0 : logradouro.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
@@ -183,6 +195,8 @@ public class Usuario {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (isAdmin != other.isAdmin)
+			return false;
 		if (logradouro == null) {
 			if (other.logradouro != null)
 				return false;
@@ -215,8 +229,10 @@ public class Usuario {
 	public String toString() {
 		return "Usuario [id=" + id + ", usuario=" + usuario + ", senha=" + senha + ", nome=" + nome + ", cpf=" + cpf
 				+ ", cep=" + cep + ", logradouro=" + logradouro + ", bairro=" + bairro + ", cidade=" + cidade + ", uf="
-				+ uf + ", complemento=" + complemento + "]";
+				+ uf + ", complemento=" + complemento + ", isAdmin=" + isAdmin + "]";
 	}
+
+	
 
 
 	
