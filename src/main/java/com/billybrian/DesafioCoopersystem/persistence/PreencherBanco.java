@@ -25,9 +25,17 @@ public class PreencherBanco implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Usuario usuario = this.repository.save(new Usuario("admin", "123456", "Billy Brian Moraes Filgueira", "02953367144", "73045171", "Sobradinho", "Sobradinho", "Brasília", "DF", "Casa"));
+		// Criação do usuário admin
+		Usuario admin = this.repository.save(new Usuario("admin", "123456", "Billy Brian Moraes Filgueira", "02953367144", "73045171", "Quadra 17 Cj A", "Sobradinho", "Brasília", "DF", "Casa", true));
 		
-		this.telRepository.save(new UsuariosTelefones(usuario, "61982015045", TiposTelefone.CELULAR));
+		this.telRepository.save(new UsuariosTelefones(admin, "61982015045", TiposTelefone.CELULAR));
+		
+		// Criação do usuário padrão
+		Usuario padrao = this.repository.save(new Usuario("comum", "123456", "José da Silva", "12345678901", "12345123", "SQN 306 Bloco C Apt 201", "Asa norte", "Brasília", "DF", "Apartamento", false));
+		
+		this.telRepository.save(new UsuariosTelefones(padrao, "61900000000", TiposTelefone.CELULAR));
+		this.telRepository.save(new UsuariosTelefones(padrao, "61911111111", TiposTelefone.RESIDENCIAL));
+		
 	}
 
 }
