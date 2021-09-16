@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.billybrian.DesafioCoopersystem.dto.TokenDTO;
+import com.billybrian.DesafioCoopersystem.dto.UsuarioLoginDTO;
 import com.billybrian.DesafioCoopersystem.entities.Usuario;
 import com.billybrian.DesafioCoopersystem.repositories.UsuarioRepository;
 
@@ -30,6 +32,15 @@ public class UsuarioController {
 	@PostMapping("/usuarios")
 	  Usuario novoUsuario(@RequestBody Usuario novoUsuario) {
 	    return repository.save(novoUsuario);
+	}
+	
+	@PostMapping("/login")
+	TokenDTO loginUsuario(@RequestBody UsuarioLoginDTO login) {
+		
+		TokenDTO t = new TokenDTO();
+		
+		t.setToken("test123");
+		return t;
 	}
 	
 	
