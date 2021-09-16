@@ -19,5 +19,6 @@
 
 Após importar o projeto, rode-o através da seguinte linha de comando:
 `./mvnw spring-boot:run`
+
 Ou, no windows:
 `mvnw.bat`
