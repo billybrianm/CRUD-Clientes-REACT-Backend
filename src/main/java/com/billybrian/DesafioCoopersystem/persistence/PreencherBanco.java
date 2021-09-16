@@ -33,8 +33,8 @@ public class PreencherBanco implements CommandLineRunner {
 		// Criação do usuário padrão
 		Usuario padrao = this.repository.save(new Usuario("comum", "123456", "José da Silva", "12345678901", "12345123", "SQN 306 Bloco C Apt 201", "Asa norte", "Brasília", "DF", "Apartamento", false));
 		
-		this.telRepository.save(new UsuariosTelefones(padrao, "61900000000", TiposTelefone.CELULAR));
-		this.telRepository.save(new UsuariosTelefones(padrao, "61911111111", TiposTelefone.RESIDENCIAL));
+		UsuariosTelefones um = this.telRepository.save(new UsuariosTelefones(padrao, "61900000000", TiposTelefone.CELULAR));
+		UsuariosTelefones dois = this.telRepository.save(new UsuariosTelefones(padrao, "61911111111", TiposTelefone.RESIDENCIAL));
 		
 	}
 
