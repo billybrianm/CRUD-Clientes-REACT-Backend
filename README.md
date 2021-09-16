@@ -22,3 +22,5 @@ Após importar o projeto, rode-o através da seguinte linha de comando:
 
 Ou, no windows:
 `mvnw.bat`
+
+O servidor backend irá rodar por padrão na porta 8080.
